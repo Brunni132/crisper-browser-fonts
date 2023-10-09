@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Crisper fonts ✨",
+  "version": "1.0",
+  "description": "Allows for sharper fonts on web pages.",
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*/*"
+      ],
+      "js": [
+        "contentScript.js"
+      ],
+      "run_at": "document_end"
+    }
+  ]
+}
