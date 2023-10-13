@@ -9,11 +9,33 @@
 // Same in case we change the options (be able to apply a different styling directly on the page).
 // Permit the setting between 0 and 150% (above 100% it just adds to NN).
 
+let styleElement = undefined
+
+function addCssToPage(head, css) {
+    if (!head) return
+    if (styleElement) styleElement.remove()
+    if (!css) return
+
+    styleElement = document.createElement('style')
+    styleElement.type = 'text/css'
+    styleElement.appendChild(document.createTextNode(css))
+    head.appendChild(styleElement)
+}
+
 window.onload = function () {
-    const css = '* {-webkit-font-smoothing: none !important}'
-    const style = document.createElement('style')
+    window.onload = undefined
+
     const head = document.head || document.getElementsByTagName('head')[0]
-    head.appendChild(style)
-    style.type = 'text/css'
-    style.appendChild(document.createTextNode(css))
+    function getAndApplyStorage() {
+        chrome.storage.local.get({
+            type: 'no-smoothing',
+            color: 0,
+            strength: 1.00,
+        }, (storageContents) => addCssToPage(head, getPageWideStyle(storageContents)))
+    }
+
+    getAndApplyStorage()
+    chrome.storage.onChanged.addListener((changedContents) => {
+        getAndApplyStorage()
+    })
 }

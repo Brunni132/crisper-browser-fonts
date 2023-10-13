@@ -1,0 +1,95 @@
+﻿<!doctype html>
+<html>
+
+<head>
+  <title>Crisper Browser Fonts</title>
+  <link rel="stylesheet" type="text/css" href="../css/main.css">
+  <script src="../js/apply-fonts.js"></script>
+  <script src="../js/settings.js"></script>
+</head>
+
+<body>
+
+  <form class="settings">
+    <fieldset>
+      <legend for="select-field">Crisper Fonts ✨</legend>
+      <p>
+        <input type="radio" name="type" id="type-off">
+        <label for="type-off" class="preview-off tooltip">
+          Original (extension disabled)
+          <span class="tooltip-text">Does not touch the page in any way, guaranteed. Also removes any prior
+            modifications (no need to reload).</span>
+        </label>
+      </p>
+      <p>
+        <input type="radio" name="type" id="type-no-smoothing">
+        <label for="type-no-smoothing" class="preview-no-smoothing tooltip">
+          Jagged fonts*
+          <span class="tooltip-text">Attempts to disable anti-aliasing entirely, if possible.</span>
+        </label>
+      </p>
+      <p>
+        <input type="radio" name="type" id="type-shadow">
+        <label for="type-shadow" class="preview-shadow tooltip">
+          Extra-contrasted
+          <span class="tooltip-text">This is the signature method. Tricks the Chromium rendering engine into adding
+            more contrast to the text.</span>
+        </label>
+      </p>
+      <div id="type-shadow-options">
+        <div style="margin-left: 25px; margin-top: 10px;">
+          Outline
+          <br />
+          <input type="radio" name="color" id="color-0">
+          <label for="color-0" class="preview-color-0 tooltip">
+            Black (recommended)
+            <span class="tooltip-text">Good all-around. Does little on dark pages, but all OSes do well enough in this
+              case already.</span>
+          </label>
+          <br />
+          <input type="radio" name="color" id="color-80">
+          <label for="color-80" class="preview-color-80 tooltip">
+            Gray 30%
+            <span class="tooltip-text">Compromise making fonts thicker on both bright and dark pages.</span>
+          </label>
+          <br />
+          <input type="radio" name="color" id="color-128">
+          <label for="color-128" class="preview-color-128 tooltip">
+            Gray 50%
+            <span class="tooltip-text">Another compromise for both dark and bright pages.</span>
+          </label>
+          <br />
+          <input type="radio" name="color" id="color-255">
+          <label for="color-255" class="preview-color-255 tooltip">
+            White
+            <span class="tooltip-text">Try it when browsing mainly dark content.</span>
+          </label>
+        </div>
+        <div style="padding-top: 10px; width: 100%; display: flex; align-items: flex-end;">
+          <label for="strength" style="padding: 0 10px 0 25px;">Strength</label>
+          <input id="strength" type="range" min="0" max="1.5" step="0.1" style="flex-grow: 1;" />
+          <div id="strength-value" style="text-align: right; width: 35px;"></div>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+
+  <div style="padding-top: 10px; width: 100%; display: flex; align-items: flex-end;">
+    <label for="sample-text-size" style="padding: 0 10px 0 0;">Preview size</label>
+    <input id="sample-text-size" type="range" min="50" max="200" step="10" value="100" style="flex-grow: 1;" />
+    <div id="sample-text-size-value" style="text-align: right; width: 35px;"></div>
+  </div>
+  <div id="sample-text" class="sample-text">
+    <p>Sample text using the selected font settings. You can also simply change the settings while browsing to compare.</p>
+    <p>Γεια σας κόσμε. Здравствуй мир. 你好，世界。こんにちは世界。안녕하세요, 세상.</p>
+    <p>* This is only supported on some configurations (ex. for Chrome, on macOS only).</p>
+    <p class="dark-only tooltip">
+      ⚠️ This extension may have less effect in dark mode.
+      <span class="tooltip-text tooltip-on-top">Try setting Extra-contrasted with a white outline. Be aware that this
+        extension may conflict with others which restyle everything, like Dark Reader.</span>
+    </p>
+  </div>
+
+</body>
+
+</html>

@@ -9,9 +9,18 @@
         "*://*/*"
       ],
       "js": [
-        "contentScript.js"
+        "js/apply-fonts.js",
+        "js/content-script.js"
       ],
-      "run_at": "document_end"
+      "run_at": "document_start"
     }
-  ]
+  ],
+  "options_page": "html/popup.html",
+  "permissions": [ "storage" ],
+  "icons": {
+    "16": "images/icon16.png"
+  },
+  "action": {
+    "default_popup": "html/popup.html"
+  }
 }

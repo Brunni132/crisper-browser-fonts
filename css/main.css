@@ -1,0 +1,103 @@
+/**
+ * TODO: use this https://fjolt.com/article/css-ios-crystalline-effect-backdrop-filter
+ */
+body {
+  background-color: #d0dbff;
+  min-width: 357px;
+  overflow-x: hidden;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltip-text {
+  visibility: hidden;
+  min-width: 120px;
+  background-color: rgba(255 255 192 / 70%);
+  backdrop-filter: brightness(300%) saturate(200%) blur(1rem);
+  box-shadow: 0 10px 15px rgb(0 0 0 / 20%);
+  background-blend-mode: overlay;
+  color: #000;
+  text-align: center;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  top: 0%;
+  left: 100%;
+  margin-left: 10px;
+  padding: 5px;
+
+  /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.tooltip .tooltip-on-top {
+  top: initial;
+  left: 0;
+  bottom: 100%;
+}
+
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.preview-no-smoothing {
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: none;
+  text-shadow: none;
+  font-size: 14px;
+}
+
+.preview-shadow {
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: initial;
+  text-shadow: 0px 0px 0.0px rgba(0,0,0,1);
+  font-size: 14px;
+}
+
+.preview-off {
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: initial;
+  text-shadow: initial;
+  font-size: 14px;
+}
+
+.tooltip-text {
+  -webkit-font-smoothing: initial;
+  text-shadow: initial;
+  font-size: 12px;
+}
+
+.sample-text {
+  font-family: 'Verdana';
+}
+
+@media (prefers-color-scheme: light) {
+  .dark-only {
+    display: none;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+     background: #283761;
+     color: white;
+  }
+
+  .tooltip {
+    border-bottom: 1px dotted rgb(128,224,255);
+  }
+
+  .tooltip .tooltip-text {
+    background-color: rgba(255,255,255,0.5);
+  }
+
+  .preview-shadow {
+    text-shadow: 0px 0px 0.0px rgba(255,255,255,1) !important;
+  }
+}
