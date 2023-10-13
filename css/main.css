@@ -1,5 +1,5 @@
 /**
- * TODO: use this https://fjolt.com/article/css-ios-crystalline-effect-backdrop-filter
+ * TODO: use this for design: https://fjolt.com/article/css-ios-crystalline-effect-backdrop-filter
  */
 body {
   background-color: #d0dbff;
@@ -46,7 +46,7 @@ body {
   opacity: 1;
 }
 
-.preview-no-smoothing {
+.preview-jagged {
   text-rendering: optimizeSpeed;
   -webkit-font-smoothing: none;
   text-shadow: none;

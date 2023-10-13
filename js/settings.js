@@ -3,7 +3,7 @@ window.onload = function() {
     const elements = {
         type: {
             off: document.getElementById('type-off'),
-            'no-smoothing': document.getElementById('type-no-smoothing'),
+            jagged: document.getElementById('type-jagged'),
             shadow: document.getElementById('type-shadow'),
         },
         color: {
@@ -36,18 +36,13 @@ window.onload = function() {
         Object.keys(elements.type).forEach(k => elements.type[k].checked = settings.type === k)
         Object.keys(elements.color).forEach(k => elements.color[k].checked = settings.color === k)
         elements.strength.slider.value = settings.strength
-        elements.strength.display.textContent = (Math.round(settings.strength * 10) / 10).toFixed(1);
+        elements.strength.display.textContent = parseFloat(settings.strength).toFixed(1);
         elements.shadowOptions.container.style.display = settings.type === 'shadow' ? 'block' : 'none';
         elements.sampleText.container.style = `${getModifiedStyle(settings)}; font-size: ${elements.sampleText.size.value}%;`;
-        elements.sampleText.sizeDisplay.textContent = elements.sampleText.size.value.toString();
+        elements.sampleText.sizeDisplay.textContent = elements.sampleText.size.value.toString() + '%';
     }
 
-    // TODO: make common (the initialization) with apply-fonts.js
-    chrome.storage.local.get({
-		type: 'no-smoothing',
-        color: 0,
-        strength: 1.00,
-    }, function(storageContents) {
+    readSettings(storageContents => {
         settings = storageContents;
         updateUi();
 
