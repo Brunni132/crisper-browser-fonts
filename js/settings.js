@@ -1,4 +1,5 @@
 window.onload = function() {
+    window.onload = undefined
     let settings = undefined
     const elements = {
         type: {
@@ -41,6 +42,16 @@ window.onload = function() {
         elements.sampleText.container.style = `${getModifiedStyle(settings)}; font-size: ${elements.sampleText.size.value}%;`;
         elements.sampleText.sizeDisplay.textContent = elements.sampleText.size.value.toString() + '%';
     }
+
+    // This hack is to force Chrome to redraw the sample text container, else it might remain in black/white rendering because of the hardware accelerated CSS properties (blur, etc.)
+    setInterval(() => {
+        const backgroundColor = window.getComputedStyle(document.body, null).getPropertyValue('background-color')
+        if (elements.sampleText.container.style.backgroundColor) {
+            elements.sampleText.container.style.backgroundColor = '';
+        } else {
+            elements.sampleText.container.style.backgroundColor = backgroundColor;
+        }
+    }, 1000);
 
     readSettings(storageContents => {
         settings = storageContents;

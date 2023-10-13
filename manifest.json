@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Crisper fonts ✨",
+  "name": "CrispFonts ✨",
   "version": "1.0",
   "description": "Allows for sharper fonts on web pages.",
   "content_scripts": [

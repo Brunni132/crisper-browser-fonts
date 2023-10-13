@@ -31,8 +31,8 @@ body {
   padding: 5px;
 
   /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
-  opacity: 0;
-  transition: opacity 1s;
+  /* opacity: 0;
+  transition: opacity 1s; */
 }
 
 .tooltip .tooltip-on-top {
@@ -43,7 +43,7 @@ body {
 
 .tooltip:hover .tooltip-text {
   visibility: visible;
-  opacity: 1;
+  /* opacity: 1; */
 }
 
 .preview-jagged {
