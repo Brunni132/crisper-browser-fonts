@@ -13,9 +13,7 @@ function addCssToPage(head, css) {
     head.appendChild(styleElement)
 }
 
-window.onload = function () {
-    window.onload = undefined
-
+function init() {
     const head = document.head || document.getElementsByTagName('head')[0]
     function getAndApplyStorage() {
         readSettings(storageContents => addCssToPage(head, getPageWideStyle(storageContents)))
@@ -26,3 +24,18 @@ window.onload = function () {
         getAndApplyStorage()
     })
 }
+
+// Cleaner, but needs the whole body to load to be applied
+// window.onload = function () {
+//     window.onload = undefined
+//     init()
+// }
+
+// Applies immediately
+let interval = setInterval(() => {
+    if (document.head && interval) {
+        clearInterval(interval)
+        interval = undefined
+        init()
+    }
+}, 20)
