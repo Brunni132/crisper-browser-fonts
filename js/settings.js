@@ -57,6 +57,13 @@ window.onload = function() {
         settings = storageContents;
         updateUi();
 
+        // Focus on the current selected type by default
+        Object.keys(elements.type).forEach(k => {
+            if (settings.type === k) {
+                elements.type[k].focus()
+            }
+        })
+
         Object.keys(elements.type).forEach(k => {
             elements.type[k].oninput = () => set('type', k)
         })
