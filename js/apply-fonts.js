@@ -4,6 +4,10 @@ const DEFAULT_OPTIONS = {
     strength: '1.00',
 }
 
+function makeStroke(width, color, alpha) {
+    return `0px 0px ${width}px rgba(${color},${color},${color},${alpha})`
+}
+
 function getModifiedStyle({ type, color, strength }) {
     // const css = '* {-webkit-font-smoothing: none !important}'
     // const css = '* {-webkit-font-smoothing: none !important; text-rendering: optimizeSpeed;}'
@@ -13,12 +17,19 @@ function getModifiedStyle({ type, color, strength }) {
         case 'jagged':
             return '-webkit-font-smoothing: none !important'
         case 'shadow':
-            if (strength >= 1.05) {
+            if (strength >= 1.53) {
+                const a = parseFloat((strength - 1.5) * 2).toFixed(2)
+                return `text-shadow: ${makeStroke(0, color, 1)}, ${makeStroke(0, color, 1)}, ${makeStroke(0, color, a)} !important`
+            } else if (strength >= 1.23) {
+                const a = parseFloat((strength - 1) * 2).toFixed(2)
+                return `text-shadow: ${makeStroke(0, color, 1)}, ${makeStroke(0, color, a)} !important`
+            } else if (strength >= 1.03) {
                 const width = parseFloat(strength - 1).toFixed(2)
-                return `text-shadow: 0px 0px ${width}px rgba(${color},${color},${color},1) !important`
+                return `text-shadow: ${makeStroke(width, color, 1)} !important`
+            } else {
+                const a = parseFloat(strength).toFixed(2)
+                return `text-shadow: ${makeStroke(0, color, a)} !important`
             }
-            const a = parseFloat(strength).toFixed(2)
-            return `text-shadow: 0px 0px 0px rgba(${color},${color},${color},${a}) !important`
     }
     return undefined
 }
