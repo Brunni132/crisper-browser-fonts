@@ -5,6 +5,7 @@
   "description": "Allows for sharper fonts on web pages.",
   "content_scripts": [
     {
+      "all_frames": true,
       "matches": [
         "*://*/*"
       ],
